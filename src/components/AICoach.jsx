@@ -13,6 +13,10 @@ export default function AICoach({ trades, userId, settings }) {
   const [requestCount, setRequestCount] = useState(0);
 
   useEffect(() => {
+    console.log("AI Coach initialized. API Key detected:", !!GEMINI_API_KEY);
+  }, []);
+
+  useEffect(() => {
     if (userId) {
       loadPreviousAnalysis();
     }
@@ -202,7 +206,7 @@ Use trader language. Be brutally honest.`;
       {/* Floating Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-50 bg-[#00d4aa] text-bg font-black px-6 py-4 rounded-2xl shadow-[0_10px_40px_rgba(0,212,170,0.3)] hover:scale-105 active:scale-95 transition-all flex items-center gap-3 group"
+        className="fixed bottom-24 md:bottom-8 right-6 z-[60] bg-[#00d4aa] text-bg font-black px-6 py-4 rounded-2xl shadow-[0_10px_40px_rgba(0,212,170,0.3)] hover:scale-105 active:scale-95 transition-all flex items-center gap-3 group"
       >
         <span className="text-xl group-hover:rotate-12 transition-transform">🤖</span>
         <span>AI COACH</span>
