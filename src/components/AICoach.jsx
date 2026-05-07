@@ -12,9 +12,6 @@ export default function AICoach({ trades, userId, settings }) {
   const [error, setError] = useState(null);
   const [requestCount, setRequestCount] = useState(0);
 
-  useEffect(() => {
-    console.log("AI Coach initialized. API Key detected:", !!GEMINI_API_KEY);
-  }, []);
 
   useEffect(() => {
     if (userId) {
