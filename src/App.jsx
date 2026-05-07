@@ -12,6 +12,7 @@ import ReviewPage from "./components/ReviewPage";
 import SettingsPage from "./components/SettingsPage";
 import Calendar from "./components/Calendar";
 import AddTradeForm from "./components/AddTradeForm";
+import AICoach from "./components/AICoach";
 
 // Utils
 import { DEFAULT_SETTINGS, storage } from "./utils/helpers";
@@ -174,6 +175,8 @@ export default function App() {
         </div>
 
         {/* Global Components */}
+        <AICoach trades={trades} userId={user?.id} settings={settings} />
+
         {showAdd && (
           <AddTradeForm 
             onSave={handleSaveTrade} 

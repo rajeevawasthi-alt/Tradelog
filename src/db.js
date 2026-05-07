@@ -50,5 +50,17 @@ export const dbService = {
   saveNote: async (userId, notes) => {
     const docRef = doc(db, "users", userId, "config", "notes");
     await setDoc(docRef, { ...notes, updatedAt: serverTimestamp() });
+  },
+
+  // AI Analysis
+  saveAIAnalysis: async (userId, analysis) => {
+    const docRef = doc(db, "users", userId, "config", "ai_analysis");
+    await setDoc(docRef, { ...analysis, updatedAt: serverTimestamp() });
+  },
+
+  getAIAnalysis: async (userId) => {
+    const docRef = doc(db, "users", userId, "config", "ai_analysis");
+    const snap = await getDoc(docRef);
+    return snap.exists() ? snap.data() : null;
   }
 };
