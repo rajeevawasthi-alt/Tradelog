@@ -206,10 +206,10 @@ Use trader language. Be brutally honest.`;
       {/* Floating Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-24 md:bottom-8 right-6 z-[60] bg-[#00d4aa] text-bg font-black px-6 py-4 rounded-2xl shadow-[0_10px_40px_rgba(0,212,170,0.3)] hover:scale-105 active:scale-95 transition-all flex items-center gap-3 group"
+        className="fixed bottom-24 md:bottom-8 right-4 md:right-8 z-[60] bg-[#00d4aa] text-bg font-black px-4 md:px-6 py-3 md:py-4 rounded-xl md:rounded-2xl shadow-[0_10px_40px_rgba(0,212,170,0.3)] hover:scale-105 active:scale-95 transition-all flex items-center gap-2 md:gap-3 group"
       >
-        <span className="text-xl group-hover:rotate-12 transition-transform">🤖</span>
-        <span>AI COACH</span>
+        <span className="text-lg md:text-xl group-hover:rotate-12 transition-transform">🤖</span>
+        <span className="text-[10px] md:text-xs tracking-widest">AI COACH</span>
       </button>
 
       {/* Slide-up Modal */}
@@ -220,28 +220,28 @@ Use trader language. Be brutally honest.`;
             onClick={() => setIsOpen(false)}
           />
           
-          <div className="relative w-full max-w-2xl bg-card border border-border rounded-[2.5rem] shadow-2xl overflow-hidden animate-slide-up flex flex-col max-h-[90vh]">
+          <div className="relative w-full max-w-2xl bg-card border-x border-t sm:border border-border rounded-t-[2rem] sm:rounded-[2.5rem] shadow-2xl overflow-hidden animate-slide-up flex flex-col h-[85vh] sm:h-auto sm:max-h-[90vh]">
             {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-border">
+            <div className="flex items-center justify-between p-5 sm:p-6 border-b border-border bg-card/50 backdrop-blur-md sticky top-0 z-10">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-[#00d4aa]/10 flex items-center justify-center text-xl">🤖</div>
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#00d4aa]/10 flex items-center justify-center text-lg sm:text-xl">🤖</div>
                 <div>
-                  <h3 className="font-black text-text uppercase tracking-tight">Trading Coach AI</h3>
-                  <p className="text-[10px] font-bold text-subtext uppercase tracking-widest">
-                    {lastAnalyzed !== null ? `Last analyzed: ${lastAnalyzed} hours ago` : "No recent analysis"}
+                  <h3 className="font-black text-text uppercase tracking-tight text-sm sm:text-base">Trading Coach AI</h3>
+                  <p className="text-[9px] sm:text-[10px] font-bold text-subtext uppercase tracking-widest">
+                    {lastAnalyzed !== null ? `Last analyzed: ${lastAnalyzed}h ago` : "No recent analysis"}
                   </p>
                 </div>
               </div>
               <button 
                 onClick={() => setIsOpen(false)}
-                className="w-10 h-10 rounded-xl hover:bg-bg flex items-center justify-center text-subtext transition-colors"
+                className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl hover:bg-bg flex items-center justify-center text-subtext transition-colors"
               >
                 ✕
               </button>
             </div>
 
             {/* Content */}
-            <div className="p-6 overflow-y-auto space-y-6">
+            <div className="p-4 sm:p-6 overflow-y-auto space-y-4 sm:space-y-6 flex-1 custom-scrollbar">
               {loading ? (
                 <div className="py-20 flex flex-col items-center justify-center space-y-6">
                   <div className="w-16 h-16 border-4 border-[#00d4aa]/20 border-t-[#00d4aa] rounded-full animate-spin" />
@@ -264,63 +264,63 @@ Use trader language. Be brutally honest.`;
               ) : parsed ? (
                 <div className="space-y-6">
                   {/* Red Card */}
-                  <div className="bg-red-500/5 border border-red-500/20 rounded-3xl p-6">
-                    <div className="flex items-center gap-2 mb-4">
-                      <span className="text-xl">🔴</span>
-                      <h4 className="font-black text-red-400 uppercase tracking-widest text-sm">What's Wrong</h4>
+                  <div className="bg-red-500/5 border border-red-500/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6">
+                    <div className="flex items-center gap-2 mb-3 sm:mb-4">
+                      <span className="text-lg">🔴</span>
+                      <h4 className="font-black text-red-400 uppercase tracking-widest text-[11px] sm:text-sm">What's Wrong</h4>
                     </div>
-                    <div className="text-sm text-text/80 leading-relaxed whitespace-pre-wrap">
+                    <div className="text-xs sm:text-sm text-text/80 leading-relaxed whitespace-pre-wrap">
                       {parsed.wrong}
                     </div>
                   </div>
 
                   {/* Yellow Card */}
-                  <div className="bg-amber-500/5 border border-amber-500/20 rounded-3xl p-6">
-                    <div className="flex items-center gap-2 mb-4">
-                      <span className="text-xl">🟡</span>
-                      <h4 className="font-black text-amber-400 uppercase tracking-widest text-sm">What to Improve</h4>
+                  <div className="bg-amber-500/5 border border-amber-500/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6">
+                    <div className="flex items-center gap-2 mb-3 sm:mb-4">
+                      <span className="text-lg">🟡</span>
+                      <h4 className="font-black text-amber-400 uppercase tracking-widest text-[11px] sm:text-sm">What to Improve</h4>
                     </div>
-                    <div className="text-sm text-text/80 leading-relaxed whitespace-pre-wrap">
+                    <div className="text-xs sm:text-sm text-text/80 leading-relaxed whitespace-pre-wrap">
                       {parsed.improve}
                     </div>
                   </div>
 
                   {/* Green Card */}
-                  <div className="bg-emerald-500/5 border border-emerald-500/20 rounded-3xl p-6">
-                    <div className="flex items-center gap-2 mb-4">
-                      <span className="text-xl">🟢</span>
-                      <h4 className="font-black text-emerald-400 uppercase tracking-widest text-sm">What's Working</h4>
+                  <div className="bg-emerald-500/5 border border-emerald-500/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6">
+                    <div className="flex items-center gap-2 mb-3 sm:mb-4">
+                      <span className="text-lg">🟢</span>
+                      <h4 className="font-black text-emerald-400 uppercase tracking-widest text-[11px] sm:text-sm">What's Working</h4>
                     </div>
-                    <div className="text-sm text-text/80 leading-relaxed whitespace-pre-wrap">
+                    <div className="text-xs sm:text-sm text-text/80 leading-relaxed whitespace-pre-wrap">
                       {parsed.working}
                     </div>
                   </div>
 
                   {/* Risk Score */}
-                  <div className="bg-bg/50 rounded-3xl p-6 border border-border">
+                  <div className="bg-bg/50 rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-border">
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center gap-2">
-                        <span className="text-xl">📊</span>
-                        <h4 className="font-black text-text uppercase tracking-widest text-sm">Risk Score</h4>
+                        <span className="text-lg">📊</span>
+                        <h4 className="font-black text-text uppercase tracking-widest text-[11px] sm:text-sm">Risk Score</h4>
                       </div>
-                      <span className="text-xl font-black text-[#00d4aa]">{parsed.riskScore}/10</span>
+                      <span className="text-base sm:text-xl font-black text-[#00d4aa]">{parsed.riskScore}/10</span>
                     </div>
-                    <div className="w-full h-3 bg-card rounded-full overflow-hidden mb-4 border border-border">
+                    <div className="w-full h-2.5 bg-card rounded-full overflow-hidden mb-4 border border-border">
                       <div 
                         className={`h-full transition-all duration-1000 ${parsed.riskScore > 7 ? 'bg-red-500' : parsed.riskScore > 4 ? 'bg-amber-500' : 'bg-emerald-500'}`}
                         style={{ width: `${parsed.riskScore * 10}%` }}
                       />
                     </div>
-                    <p className="text-xs text-subtext leading-relaxed">{parsed.riskNote}</p>
+                    <p className="text-[11px] sm:text-xs text-subtext leading-relaxed">{parsed.riskNote}</p>
                   </div>
 
                   {/* Psychology Alert */}
-                  <div className="bg-purple-500/10 border border-purple-500/20 rounded-3xl p-6">
-                    <div className="flex items-center gap-2 mb-3">
-                      <span className="text-xl">🧠</span>
-                      <h4 className="font-black text-purple-400 uppercase tracking-widest text-sm">Psychology Alert</h4>
+                  <div className="bg-purple-500/10 border border-purple-500/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6">
+                    <div className="flex items-center gap-2 mb-2 sm:mb-3">
+                      <span className="text-lg">🧠</span>
+                      <h4 className="font-black text-purple-400 uppercase tracking-widest text-[11px] sm:text-sm">Psychology Alert</h4>
                     </div>
-                    <p className="text-sm text-text/90 italic">"{parsed.psychAlert}"</p>
+                    <p className="text-xs sm:text-sm text-text/90 italic">"{parsed.psychAlert}"</p>
                   </div>
                 </div>
               ) : (
