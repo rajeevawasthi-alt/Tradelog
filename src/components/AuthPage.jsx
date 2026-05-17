@@ -58,37 +58,37 @@ export default function AuthPage({ onLogin }) {
   };
 
   return (
-    <div className="min-h-screen bg-[#07090f] flex flex-col md:flex-row md:overflow-hidden relative font-sans overflow-y-auto">
+    <div className="min-h-screen bg-bg flex flex-col md:flex-row md:overflow-hidden relative font-sans overflow-y-auto">
       {/* Background elements */}
       <div className="absolute inset-0 grid-overlay pointer-events-none opacity-20" />
-      <div className="absolute top-[10%] left-[5%] w-[30%] h-[30%] bg-[#00d4aa]/10 rounded-full blur-[120px] animate-orb pointer-events-none" />
-      <div className="absolute bottom-[10%] right-[5%] w-[30%] h-[30%] bg-[#f0c040]/10 rounded-full blur-[120px] animate-orb stagger-2 pointer-events-none" />
-      <div className="absolute top-[40%] right-[15%] w-[20%] h-[20%] bg-[#00d4aa]/5 rounded-full blur-[100px] animate-orb stagger-3 pointer-events-none" />
+      <div className="absolute top-[10%] left-[5%] w-[30%] h-[30%] bg-brand-primary/10 rounded-full blur-[120px] animate-orb pointer-events-none" />
+      <div className="absolute bottom-[10%] right-[5%] w-[30%] h-[30%] bg-brand-secondary/10 rounded-full blur-[120px] animate-orb stagger-2 pointer-events-none" />
+      <div className="absolute top-[40%] right-[15%] w-[20%] h-[20%] bg-brand-primary/5 rounded-full blur-[100px] animate-orb stagger-3 pointer-events-none" />
 
       {/* LEFT PANEL - Hero Side */}
       <div className="flex-1 flex flex-col justify-center p-8 md:p-24 z-10 animate-in fade-in slide-in-from-left duration-1000">
         <div className="flex items-center gap-3 mb-16 stagger-1 animate-in fade-in slide-in-from-bottom duration-700 fill-mode-both">
-          <div className="w-10 h-10 bg-[#00d4aa] rounded-lg flex items-center justify-center text-white shadow-[0_0_20px_rgba(0,212,170,0.4)]">
+          <div className="w-10 h-10 bg-brand-primary rounded-lg flex items-center justify-center text-white shadow-[0_0_20px_rgba(0,212,170,0.4)]">
             <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path d="M3 3v18h18" strokeLinecap="round" strokeLinejoin="round"/>
               <path d="M18 9l-5 5-3-3-4 4" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
-          <h1 className="text-2xl font-bold tracking-tighter text-white font-syne">TradeLog<span className="text-[#00d4aa]">.</span></h1>
+          <h1 className="text-2xl font-extrabold tracking-tighter text-text">TradeLog<span className="text-brand-primary">.</span></h1>
         </div>
 
         <div className="space-y-6 max-w-xl">
-          <p className="text-[#00d4aa] text-xs font-black tracking-[0.3em] uppercase stagger-2 animate-in fade-in slide-in-from-bottom duration-700 fill-mode-both">Master Your Edge</p>
-          <h2 className="text-5xl md:text-7xl font-extrabold text-white leading-[1.1] font-syne stagger-3 animate-in fade-in slide-in-from-bottom duration-700 fill-mode-both">
-            The only journal you'll <span className="text-[#00d4aa]">actually use.</span>
+          <p className="text-brand-primary text-xs font-black tracking-[0.3em] uppercase stagger-2 animate-in fade-in slide-in-from-bottom duration-700 fill-mode-both">Master Your Edge</p>
+          <h2 className="text-5xl md:text-7xl font-extrabold text-text leading-[1.1] stagger-3 animate-in fade-in slide-in-from-bottom duration-700 fill-mode-both">
+            The only journal you'll <span className="text-brand-primary">actually use.</span>
           </h2>
-          <p className="text-gray-400 text-lg md:text-xl font-medium leading-relaxed stagger-3 animate-in fade-in slide-in-from-bottom duration-1000 fill-mode-both">
+          <p className="text-subtext text-lg md:text-xl font-medium leading-relaxed stagger-3 animate-in fade-in slide-in-from-bottom duration-1000 fill-mode-both">
             Track performance, analyze psychology, and scale your trading with precision data.
           </p>
           
           <div className="flex flex-wrap gap-4 pt-8 stagger-3 animate-in fade-in duration-1000 delay-500 fill-mode-both">
             {["Psychology Tracking", "Advanced Analytics", "Risk Management"].map(p => (
-              <span key={p} className="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-[10px] font-bold uppercase tracking-widest text-gray-300">
+              <span key={p} className="px-4 py-2 rounded-full border border-border bg-card text-[10px] font-bold uppercase tracking-widest text-subtext">
                 {p}
               </span>
             ))}
@@ -101,24 +101,24 @@ export default function AuthPage({ onLogin }) {
         <div className="w-full max-w-md glass-card rounded-[2.5rem] p-10 relative overflow-hidden border-white/5">
           <div className="relative z-10">
             {/* Tabs */}
-            <div className="flex gap-8 mb-12 border-b border-white/5 relative">
+            <div className="flex gap-8 mb-12 border-b border-border relative">
               {["login", "signup"].map(m => (
                 <button 
                   key={m} 
                   onClick={() => { setMode(m); setErr(""); }}
-                  className={`pb-4 text-xs font-black uppercase tracking-[0.2em] transition-all relative ${mode === m ? "text-white" : "text-gray-500 hover:text-gray-300"}`}
+                  className={`pb-4 text-xs font-black uppercase tracking-[0.2em] transition-all relative ${mode === m ? "text-text" : "text-subtext hover:text-text"}`}
                 >
                   {m === "login" ? "Sign In" : "Register"}
-                  {mode === m && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#00d4aa] shadow-[0_0_10px_rgba(0,212,170,0.5)]" />}
+                  {mode === m && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-primary shadow-[0_0_10px_rgba(0,212,170,0.5)]" />}
                 </button>
               ))}
             </div>
 
             <div className="mb-10">
-              <h3 className="text-3xl font-extrabold text-white font-syne mb-2">
+              <h3 className="text-3xl font-extrabold text-text mb-2">
                 {mode === "login" ? "Welcome Back" : "Create Account"}
               </h3>
-              <p className="text-gray-500 text-sm font-medium">Please enter your credentials to access your edge.</p>
+              <p className="text-subtext text-sm font-medium">Please enter your credentials to access your edge.</p>
             </div>
 
             <div className="space-y-6">
@@ -152,7 +152,7 @@ export default function AuthPage({ onLogin }) {
                 />
                 <button 
                   onClick={() => setShowPass(!showPass)}
-                  className="absolute right-5 top-[26px] text-gray-500 hover:text-[#00d4aa] transition-colors"
+                  className="absolute right-5 top-[26px] text-subtext hover:text-brand-primary transition-colors"
                 >
                   {showPass ? "👁️" : "🙈"}
                 </button>
@@ -194,17 +194,17 @@ export default function AuthPage({ onLogin }) {
                 <>
                   <div className="relative py-4">
                     <div className="absolute inset-0 flex items-center">
-                      <div className="w-full border-t border-white/5"></div>
+                      <div className="w-full border-t border-border"></div>
                     </div>
                     <div className="relative flex justify-center text-[10px] uppercase">
-                      <span className="bg-[#07090f] px-4 text-gray-600 font-black tracking-widest">or continue with</span>
+                      <span className="bg-card px-4 text-subtext font-black tracking-widest">or continue with</span>
                     </div>
                   </div>
 
                   <div className="flex gap-4">
                     <button 
                       onClick={handleGoogleLogin}
-                      className="flex-1 py-4 border border-white/10 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-white/5 transition-all flex items-center justify-center gap-3"
+                      className="flex-1 py-4 border border-border rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-bg transition-all flex items-center justify-center gap-3"
                     >
                       <svg className="w-4 h-4" viewBox="0 0 24 24">
                         <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
@@ -216,7 +216,7 @@ export default function AuthPage({ onLogin }) {
                     </button>
                     <button 
                       onClick={() => onLogin({ email: "demo@tradelog.pro", name: "Demo Trader", id: "demo" })}
-                      className="flex-1 py-4 border border-white/10 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-white/5 transition-all text-gray-400"
+                      className="flex-1 py-4 border border-border rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-bg transition-all text-subtext"
                     >
                       Demo Access
                     </button>

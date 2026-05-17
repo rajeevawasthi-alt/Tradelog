@@ -87,9 +87,9 @@ export default function Dashboard({ trades, settings, setPage }) {
   const CustomTooltip = ({ active, payload, label }) => {
     if (!active || !payload?.length) return null;
     return (
-      <div className="bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 shadow-xl">
-        <p className="text-gray-400 text-xs mb-1">{label}</p>
-        <p className={`font-bold text-sm ${payload[0].value >= 0 ? "text-emerald-400" : "text-red-400"}`}>
+      <div className="bg-card border border-border rounded-xl px-4 py-3 shadow-xl backdrop-blur-xl">
+        <p className="text-subtext text-[10px] uppercase font-bold mb-1">{label}</p>
+        <p className={`font-black text-sm ${payload[0].value >= 0 ? "text-emerald-400" : "text-red-400"}`}>
           {fmt(payload[0].value, settings.currency)}
         </p>
       </div>
@@ -99,19 +99,19 @@ export default function Dashboard({ trades, settings, setPage }) {
   return (
     <div className="space-y-8 pb-10">
       {/* Goal Progress Section */}
-      <div className="glass-card rounded-[2.5rem] p-8 border-[#00d4aa]/10">
+      <div className="glass-card rounded-[2.5rem] p-8 border-brand-primary/10">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h3 className="text-sm font-black text-white uppercase tracking-widest">Monthly Performance Goal</h3>
-            <p className="text-gray-500 text-[10px] font-bold mt-1">Target: {fmt(goalProgress.goal, settings.currency)}</p>
+            <h3 className="text-sm font-black text-text uppercase tracking-widest">Monthly Performance Goal</h3>
+            <p className="text-subtext text-[10px] font-bold mt-1">Target: {fmt(goalProgress.goal, settings.currency)}</p>
           </div>
           <p className={`text-xl font-black font-mono ${goalProgress.current >= 0 ? "text-emerald-400" : "text-red-400"}`}>
             {fmt(goalProgress.current, settings.currency)} ({goalProgress.percent}%)
           </p>
         </div>
-        <div className="w-full h-3 bg-white/5 rounded-full overflow-hidden border border-white/5">
+        <div className="w-full h-3 bg-bg rounded-full overflow-hidden border border-border">
           <div 
-            className={`h-full transition-all duration-1000 ease-out ${goalProgress.current >= 0 ? "bg-gradient-to-r from-[#00d4aa] to-emerald-400" : "bg-red-500"}`}
+            className={`h-full transition-all duration-1000 ease-out ${goalProgress.current >= 0 ? "bg-gradient-to-r from-brand-primary to-emerald-400" : "bg-red-500"}`}
             style={{ width: `${goalProgress.percent}%` }}
           />
         </div>
@@ -137,8 +137,8 @@ export default function Dashboard({ trades, settings, setPage }) {
         <div className="md:col-span-2 lg:col-span-3 glass-card rounded-[2.5rem] p-8">
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h3 className="text-lg font-black text-white tracking-tight">Equity Curve</h3>
-              <p className="text-gray-500 text-[10px] font-bold tracking-[0.2em] uppercase">Cumulative Performance</p>
+              <h3 className="text-lg font-black text-text tracking-tight">Equity Curve</h3>
+              <p className="text-subtext text-[10px] font-bold tracking-[0.2em] uppercase">Cumulative Performance</p>
             </div>
           </div>
           {pnlChartData.length > 0 ? (
@@ -146,25 +146,25 @@ export default function Dashboard({ trades, settings, setPage }) {
               <AreaChart data={pnlChartData}>
                 <defs>
                   <linearGradient id="pnlGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#00d4aa" stopOpacity={0.3} />
-                    <stop offset="95%" stopColor="#00d4aa" stopOpacity={0} />
+                    <stop offset="5%" stopColor="var(--brand-primary)" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="var(--brand-primary)" stopOpacity={0} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.05)" />
-                <XAxis dataKey="date" axisLine={false} tickLine={false} tick={{ fill: "#6b7280", fontSize: 10, fontWeight: 700 }} />
-                <YAxis axisLine={false} tickLine={false} tick={{ fill: "#6b7280", fontSize: 10, fontWeight: 700 }} tickFormatter={v => `${settings.currency}${v}`} />
-                <Tooltip content={<CustomTooltip />} cursor={{ stroke: "#00d4aa", strokeWidth: 2, strokeDasharray: "5 5" }} />
-                <Area type="monotone" dataKey="cum" stroke="#00d4aa" fill="url(#pnlGrad)" strokeWidth={4} dot={false} activeDot={{ r: 6, fill: "#00d4aa", stroke: "#fff", strokeWidth: 2 }} />
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--border)" opacity={0.2} />
+                <XAxis dataKey="date" axisLine={false} tickLine={false} tick={{ fill: "var(--subtext)", fontSize: 10, fontWeight: 700 }} />
+                <YAxis axisLine={false} tickLine={false} tick={{ fill: "var(--subtext)", fontSize: 10, fontWeight: 700 }} tickFormatter={v => `${settings.currency}${v}`} />
+                <Tooltip content={<CustomTooltip />} cursor={{ stroke: "var(--brand-primary)", strokeWidth: 2, strokeDasharray: "5 5" }} />
+                <Area type="monotone" dataKey="cum" stroke="var(--brand-primary)" fill="url(#pnlGrad)" strokeWidth={4} dot={false} activeDot={{ r: 6, fill: "var(--brand-primary)", stroke: "#fff", strokeWidth: 2 }} />
               </AreaChart>
             </ResponsiveContainer>
-          ) : <div className="h-64 flex items-center justify-center text-gray-600 font-bold uppercase tracking-widest text-xs">No trade data available</div>}
+          ) : <div className="h-64 flex items-center justify-center text-subtext font-bold uppercase tracking-widest text-xs">No trade data available</div>}
         </div>
 
         {/* Recent Activity Sidebar */}
         <div className="lg:col-span-1 glass-card rounded-[2.5rem] p-8 flex flex-col">
-          <h3 className="text-lg font-black text-white tracking-tight mb-6">Recent Trades</h3>
+          <h3 className="text-lg font-black text-text tracking-tight mb-6">Recent Trades</h3>
           <div className="space-y-4 flex-1">
-            {recentTrades.length === 0 && <p className="text-gray-600 text-[10px] font-bold text-center py-8 uppercase tracking-[0.2em]">No trades yet</p>}
+            {recentTrades.length === 0 && <p className="text-subtext text-[10px] font-bold text-center py-8 uppercase tracking-[0.2em]">No trades yet</p>}
             {recentTrades.map(t => (
               <div key={t.id} className="flex items-center justify-between group cursor-pointer">
                 <div className="flex items-center gap-4">
@@ -172,8 +172,8 @@ export default function Dashboard({ trades, settings, setPage }) {
                     {t.side[0]}
                   </div>
                   <div>
-                    <p className="text-white text-sm font-black group-hover:text-[#00d4aa] transition-colors">{t.market}</p>
-                    <p className="text-gray-500 text-[10px] font-bold uppercase tracking-wider">{fmtDate(t.date)}</p>
+                    <p className="text-text text-sm font-black group-hover:text-brand-primary transition-colors">{t.market}</p>
+                    <p className="text-subtext text-[10px] font-bold uppercase tracking-wider">{fmtDate(t.date)}</p>
                   </div>
                 </div>
                 <span className={`font-black font-mono text-xs ${t.pnl >= 0 ? "text-emerald-400" : "text-red-400"}`}>
@@ -182,7 +182,7 @@ export default function Dashboard({ trades, settings, setPage }) {
               </div>
             ))}
           </div>
-          <button onClick={() => setPage("history")} className="mt-6 w-full py-3 bg-white/5 hover:bg-white/10 rounded-2xl text-[10px] font-black uppercase tracking-widest text-gray-400 transition-all">
+          <button onClick={() => setPage("history")} className="mt-6 w-full py-3 bg-bg hover:bg-card border border-border rounded-2xl text-[10px] font-black uppercase tracking-widest text-subtext transition-all">
             View All History →
           </button>
         </div>

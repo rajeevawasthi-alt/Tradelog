@@ -35,28 +35,28 @@ export default function TradeHistory({ trades, onEdit, onDelete, settings, onSav
   return (
     <div className="space-y-4 pb-10">
       {/* Filters */}
-      <div className="bg-gray-900 border border-gray-800 rounded-2xl p-4 flex flex-wrap gap-3 items-center">
+      <div className="bg-card border border-border rounded-2xl p-4 flex flex-wrap gap-3 items-center">
         <input value={filter.search} onChange={e => setFilter(f => ({ ...f, search: e.target.value }))}
-          placeholder="🔍 Search trades..." className="bg-gray-800 border border-gray-700 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-[#00d4aa] flex-1 min-w-32" />
+          placeholder="🔍 Search trades..." className="bg-bg border border-border rounded-xl px-4 py-2 text-sm text-text focus:outline-none focus:border-brand-primary flex-1 min-w-32" />
         <select value={filter.market} onChange={e => setFilter(f => ({ ...f, market: e.target.value }))}
-          className="bg-gray-800 border border-gray-700 rounded-xl px-3 py-2 text-sm text-gray-300 focus:outline-none">
+          className="bg-bg border border-border rounded-xl px-3 py-2 text-sm text-text focus:outline-none">
           <option value="">All Markets</option>
           {settings.markets.map(m => <option key={m}>{m}</option>)}
         </select>
         <select value={filter.setup} onChange={e => setFilter(f => ({ ...f, setup: e.target.value }))}
-          className="bg-gray-800 border border-gray-700 rounded-xl px-3 py-2 text-sm text-gray-300 focus:outline-none">
+          className="bg-bg border border-border rounded-xl px-3 py-2 text-sm text-text focus:outline-none">
           <option value="">All Setups</option>
           {settings.setups.map(s => <option key={s}>{s}</option>)}
         </select>
 
         <select value={filter.result} onChange={e => setFilter(f => ({ ...f, result: e.target.value }))}
-          className="bg-gray-800 border border-gray-700 rounded-xl px-3 py-2 text-sm text-gray-300 focus:outline-none">
+          className="bg-bg border border-border rounded-xl px-3 py-2 text-sm text-text focus:outline-none">
           <option value="">All Results</option>
           <option>Profit</option>
           <option>Loss</option>
         </select>
         <div className="flex gap-2">
-          <button onClick={exportCSV} className="px-4 py-2 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-xl text-sm text-gray-300 font-medium transition-all">
+          <button onClick={exportCSV} className="px-4 py-2 bg-bg hover:bg-card border border-border rounded-xl text-sm text-subtext font-medium transition-all">
             ↓ CSV
           </button>
           <input type="file" accept=".csv" id="csv-import" className="hidden" onChange={(e) => {
@@ -85,7 +85,7 @@ export default function TradeHistory({ trades, onEdit, onDelete, settings, onSav
             };
             reader.readAsText(file);
           }} />
-          <label htmlFor="csv-import" className="px-4 py-2 bg-[#00d4aa]/10 hover:bg-[#00d4aa]/20 border border-[#00d4aa]/30 rounded-xl text-sm text-[#00d4aa] font-medium transition-all cursor-pointer">
+          <label htmlFor="csv-import" className="px-4 py-2 bg-brand-primary/10 hover:bg-brand-primary/20 border border-brand-primary/30 rounded-xl text-sm text-brand-primary font-medium transition-all cursor-pointer">
             ↑ Import
           </label>
         </div>
@@ -93,34 +93,34 @@ export default function TradeHistory({ trades, onEdit, onDelete, settings, onSav
 
 
       {/* Table */}
-      <div className="glass-card rounded-[2.5rem] overflow-hidden border-white/5">
+      <div className="glass-card rounded-[2.5rem] overflow-hidden border-border">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="bg-white/5 text-gray-500 text-[10px] font-black uppercase tracking-[0.2em]">
+              <tr className="bg-bg text-subtext text-[10px] font-black uppercase tracking-[0.2em]">
                 {[["date", "Date"], ["market", "Market"], ["setup", "Setup"], ["side", "Side"], ["entryPrice", "Entry"], ["exitPrice", "Exit"], ["pnl", "P&L"], ["rr", "R:R"], ["", "Tags"], ["", "Actions"]].map(([k, h]) => (
-                  <th key={h} onClick={() => k && sortBy(k)} className={`px-6 py-5 text-left ${k ? "cursor-pointer hover:text-white" : ""}`}>
+                  <th key={h} onClick={() => k && sortBy(k)} className={`px-6 py-5 text-left ${k ? "cursor-pointer hover:text-text" : ""}`}>
                     {h} {k && sort.key === k && (sort.dir === 1 ? "↑" : "↓")}
                   </th>
                 ))}
               </tr>
             </thead>
-            <tbody className="divide-y divide-white/5">
+            <tbody className="divide-y divide-border">
               {filtered.length === 0 && (
-                <tr><td colSpan={10} className="text-center py-20 text-gray-600 font-bold uppercase tracking-widest text-xs">No matching trades found</td></tr>
+                <tr><td colSpan={10} className="text-center py-20 text-subtext font-bold uppercase tracking-widest text-xs">No matching trades found</td></tr>
               )}
               {filtered.map(t => (
-                <tr key={t.id} className="hover:bg-white/[0.02] transition-all group">
-                  <td className="px-6 py-4 text-gray-500 font-medium">{fmtDate(t.date)}</td>
+                <tr key={t.id} className="hover:bg-bg transition-all group">
+                  <td className="px-6 py-4 text-subtext font-medium">{fmtDate(t.date)}</td>
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
                       <div className={`w-8 h-8 rounded-xl flex items-center justify-center text-[10px] font-black ${t.side === "Buy" ? "bg-emerald-500/10 text-emerald-400" : "bg-red-500/10 text-red-400"}`}>
                         {t.side[0]}
                       </div>
-                      <span className="font-black text-white">{t.market}</span>
+                      <span className="font-black text-text">{t.market}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-gray-400 font-bold text-xs">{t.setup}</td>
+                  <td className="px-6 py-4 text-subtext font-bold text-xs">{t.setup}</td>
                   <td className="px-6 py-4">
                     <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider ${t.side === "Buy" ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20" : "bg-red-500/10 text-red-400 border border-red-500/20"}`}>
                       {t.side}
@@ -128,15 +128,15 @@ export default function TradeHistory({ trades, onEdit, onDelete, settings, onSav
                   </td>
                   <td className="px-6 py-4 font-mono text-xs font-bold text-gray-300">{t.entryPrice}</td>
                   <td className="px-6 py-4 font-mono text-xs font-bold text-gray-300">{t.exitPrice || "—"}</td>
-                  <td className={`px-6 py-4 font-black font-mono text-sm ${t.pnl > 0 ? "text-emerald-400" : t.pnl < 0 ? "text-red-400" : "text-gray-500"}`}>
+                  <td className={`px-6 py-4 font-black font-mono text-sm ${t.pnl > 0 ? "text-emerald-400" : t.pnl < 0 ? "text-red-400" : "text-subtext"}`}>
                     {t.pnl > 0 ? "+" : ""}{fmt(t.pnl, settings.currency)}
                   </td>
 
-                  <td className="px-6 py-4 text-gray-500 font-black text-xs">{t.rr ? `${t.rr}:1` : "—"}</td>
+                  <td className="px-6 py-4 text-subtext font-black text-xs">{t.rr ? `${t.rr}:1` : "—"}</td>
                   <td className="px-6 py-4">
                     <div className="flex flex-wrap gap-1">
                       {(t.tags || []).slice(0, 2).map(tag => (
-                        <span key={tag} className="text-[9px] px-2 py-0.5 bg-white/5 text-gray-500 rounded-full border border-white/5 font-black uppercase tracking-wider">{tag}</span>
+                        <span key={tag} className="text-[9px] px-2 py-0.5 bg-bg text-subtext rounded-full border border-border font-black uppercase tracking-wider">{tag}</span>
                       ))}
                     </div>
                   </td>
@@ -152,7 +152,7 @@ export default function TradeHistory({ trades, onEdit, onDelete, settings, onSav
             </tbody>
           </table>
         </div>
-        <div className="px-8 py-4 bg-white/5 flex items-center justify-between text-[10px] font-black uppercase tracking-[0.2em] text-gray-500">
+        <div className="px-8 py-4 bg-bg flex items-center justify-between text-[10px] font-black uppercase tracking-[0.2em] text-subtext">
           <span>Total Records: {filtered.length}</span>
           <span>Net Performance: <span className={filtered.reduce((s, t) => s + t.pnl, 0) >= 0 ? "text-emerald-400" : "text-red-400"}>{fmt(filtered.reduce((s, t) => s + t.pnl, 0), settings.currency)}</span></span>
         </div>
